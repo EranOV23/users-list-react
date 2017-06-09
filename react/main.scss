@@ -1,0 +1,26 @@
+@import "./colors.scss";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: $background url(./cat.jpg);
+    font-family: "Open Sans";
+    font-weight: 300;
+}
+
+body {
+
+
+
+    ul, li {
+        margin:0;
+        padding:0;
+        list-style: none;
+    }
+
+
+
+}
+
+
+
