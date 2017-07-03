@@ -1,11 +1,11 @@
-@import "colors.scss";
+@import "../../colors.scss";
 
 .user-page {
     background: $mainBackground;
     padding: 20px;
-    margin: 20px;
-    margin-left: 250px;
-
+    margin: 10px;
+    margin-left: 20px;
+    width: 70%;
 
     dt {
         font-weight: 500;

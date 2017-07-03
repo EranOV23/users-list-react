@@ -8,7 +8,8 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle-[hash].js"
+        filename: "bundle-[hash].js",
+        publicPath: "/",
     },
 
     module: {
@@ -52,6 +53,10 @@ module.exports = {
         }),
 
         new ExtractTextPlugin("styles.css")
-    ]
+    ],
+
+    devServer: {
+      historyApiFallback: true
+    }
 
 };

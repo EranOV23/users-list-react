@@ -2,6 +2,10 @@ import React from "react";
 
 export default class UserDetails extends React.Component {
     render(){
+        console.log(this.props.user)
+        if(!this.props.user)
+        return (<h2>No user has selected</h2>)
+
         return (<article>
                     <h1>{ this.props.user.name }</h1>
                     <dl>
