@@ -17,7 +17,7 @@ class UserPage extends React.Component {
     }
 
     validate(nextUser, prevUser){
-
+      console.log(prevUser)
       if(prevUser)
       return true;
 
