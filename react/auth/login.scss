@@ -1,0 +1,11 @@
+@import "../colors.scss";
+
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: $background;
+  padding: 200px 70px;
+  margin: 20px;
+}

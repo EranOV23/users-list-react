@@ -1,4 +1,4 @@
-@import "../colors";
+@import "../../colors";
 
 .users-list {
     background: $navBackground;
@@ -8,4 +8,13 @@
     width: 20%;
     top: 0;
     left: 0;
+
+    a{
+      color: $fontColor;
+    }
+
+    .active{
+      color: red;
+    }
+
 }

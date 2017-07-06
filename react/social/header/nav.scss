@@ -1,0 +1,39 @@
+@import "../../colors.scss";
+
+.nav{
+  background-color: $navBackground;
+  color: $fontColor;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  a{
+    color: $fontColor;
+    margin: 10px;
+    font-size: 20px;
+    border: none;
+
+    &.active{
+      color: red;
+    }
+
+  }
+
+
+  a:hover{
+    opacity: 0.8;
+  }
+
+  .filterInput{
+    margin: 10px;
+    height: 25px;
+    border-radius: 5px;
+    border: none;
+    padding-left: 10px;
+  }
+
+  .greet{
+    margin-right: 20px;
+  }
+}

@@ -5,6 +5,7 @@ const initState = {
 
 	loggedInUser: null,
 	friends: {
+		filterdList: [],
 		usersList: [],
 		userSelected: {
 			details: null,

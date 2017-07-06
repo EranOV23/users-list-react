@@ -1,8 +1,8 @@
 import React from "react";
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {addUsersList, selectUser} from "../actions/creators";
-import userService from "../services/UserService";
+import {NavLink, withRouter} from 'react-router-dom';
+import {setUsersList, selectUser} from "../../actions/creators";
+import userService from "../../services/UserService";
 
 import "./users-list.scss";
 
@@ -27,10 +27,9 @@ class UsersList extends React.Component {
 
     renderUser(user, index){
 
-        return <Link to={`user/${user.id}`}><li onClick={ () => this.props.selectUser(user) }
-                    key={index}
-                    id={index+1}> {user.name}
-                </li></Link>
+        return  <li key={index} id={index+1}>
+                  <NavLink activeClassName="active" to={`/users/user/${user.id}`} key={index}>{user.name}</NavLink>
+                </li>
     }
 
     render(){
@@ -43,19 +42,16 @@ class UsersList extends React.Component {
     }
 }
 
-
 function mapStateToProps(state){
     return{
-        users: state.friends.usersList,
+        users: state.friends.filterdList,
     }
 }
-
 
 function mapDispatchToProps(dispatch){
     return{
-        addUsersList: (list) => dispatch(addUsersList(list)),
-        selectUser: (user) => dispatch(selectUser(user)),
+        addUsersList: (list) => dispatch(setUsersList(list)),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersList)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersList))

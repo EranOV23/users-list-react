@@ -4,8 +4,8 @@ export function addUser(user){
 	return {type: ACTIONS.ADD_USER, user}
 }
 
-export function addUsersList(list){
-	return {type: ACTIONS.ADD_USERS_LIST, list}
+export function setUsersList(list){
+	return {type: ACTIONS.SET_USERS_LIST, list}
 }
 
 export function removeUser(user){
@@ -26,4 +26,8 @@ export function logInUser(user){
 
 export function logOutUser(){
 	return {type: ACTIONS.LOG_OUT}
+}
+
+export function FilterList(filter, list){
+	return {type: ACTIONS.FILTER_LIST, filter, list}
 }
