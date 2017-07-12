@@ -1,16 +1,18 @@
 import { combineReducers } from 'redux';
-import { REMOVE_USER, SELECT_USER, SELECT_USER_POSTS } from '../actions';
+import { REMOVE_USER,
+        GET_USER_DETAILS_RESPOND,
+        GET_USER_POSTS_RESPOND,} from '../actions';
 
 
 function detailsReducer(state = null, action){
 
   switch(action.type){
 
-    case SELECT_USER:
-    return action.user;
-
     case REMOVE_USER:
-    return state == action.user ? null : state;
+        return state === action.user ? null : state;
+
+    case GET_USER_DETAILS_RESPOND:
+        return action.user;
   }
 
   return state
@@ -19,12 +21,13 @@ function detailsReducer(state = null, action){
 function postsReducer(state = null ,action){
     switch(action.type){
 
-      case SELECT_USER_POSTS:
-      return action.posts;
+      case GET_USER_POSTS_RESPOND:
+          return action.posts;
     }
 
     return state
 }
+
 
 export default combineReducers({
   details: detailsReducer,

@@ -1,22 +1,28 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import appReducers from './reducers';
 import LoginService from './services/loginService';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 
 const initState = {
 
 	loggedInUser: LoginService.get(),
 	friends: {
-		filterdList: [],
+	    isLoading: false,
+        filteredList: [],
 		usersList: [],
 		userSelected: {
-			details: null,
-			posts: [],
+			details: {name: "eran", email: "eran@gmail.ocm"},
+			posts: [{body: "body", title: "title"}],
 		}
 	}
 }
 
+let middlewares = applyMiddleware(thunk);
+
 export default createStore(
 	appReducers,
 	initState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    composeWithDevTools(middlewares),
 );

@@ -1,8 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {NavLink, withRouter} from 'react-router-dom';
-import {setUsersList, selectUser} from "../../actions/creators";
-import userService from "../../services/UserService";
+import {setUsersList, selectUser, getUsersList} from "../../actions/creators";
 
 import "./users-list.scss";
 
@@ -11,19 +10,8 @@ class UsersList extends React.Component {
 
     constructor(props){
         super(props);
-        this.getUsers();
+        this.props.getUsersList();
     }
-
-    getUsers(){
-        userService
-            .getAllUsers()
-            .then( this.appendUsersList.bind(this) );
-    }
-
-    appendUsersList(list){
-        this.props.addUsersList(list);
-    }
-
 
     renderUser(user, index){
 
@@ -33,6 +21,11 @@ class UsersList extends React.Component {
     }
 
     render(){
+        if(this.props.isLoading)
+            return (<nav className="users-list">
+                        <h3>Loading...</h3>
+                    </nav>);
+
         return (<nav className="users-list">
                     <h3>Users List</h3>
                     <ul>
@@ -44,13 +37,15 @@ class UsersList extends React.Component {
 
 function mapStateToProps(state){
     return{
-        users: state.friends.filterdList,
+        users: state.friends.filteredList,
+        isLoading: state.friends.isLoading,
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
         addUsersList: (list) => dispatch(setUsersList(list)),
+        getUsersList: () => dispatch(getUsersList())
     }
 }
 

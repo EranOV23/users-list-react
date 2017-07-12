@@ -1,58 +1,60 @@
 import React from "react";
 import UserDetails from "./UserDetails";
 import UserPosts from "./UserPosts";
-import userService from "../../../services/UserService";
-import PostsService from "../../../services/PostsService";
+import {connect} from 'react-redux';
+import {getUserDetails, getUserPosts} from '../../../actions/creators';
 
 import "./user-page.scss";
 
-export default class UserPage extends React.Component {
+class UserPage extends React.Component {
 
-    constructor({match}){
-      super();
+    constructor(props){
+      super(props);
       this.state = {
-        userId : match.params.id,
-        user: {},
-        posts: [],
-      }
-      this.getDeatils(this.state.userId);
-      this.getPosts(this.state.userId);
+        userId : this.props.match.params.id,
+      };
+      this.props.getUserDetails(this.state.userId);
+      this.props.getUserPosts(this.state.userId);
 
     }
 
     componentWillReceiveProps({match}){
       let userId = match.params.id;
-      this.setState({userId});
-      this.getDeatils(userId);
-      this.getPosts(userId);
+      if(userId !==this.state.userId){
+          this.setState({userId});
+          this.props.getUserDetails(userId);
+          this.props.getUserPosts(this.state.userId);
+      }
     }
 
-    // Get User Details
-    getDeatils(id){
-      userService
-        .getUser(id)
-        .then( this.setUser.bind(this) )
-    }
-
-    setUser(user){
-      this.setState({user})
-    }
-
-    // Get User Posts
-    getPosts(id){
-        PostsService
-            .getPosts(id)
-            .then( this.setPosts.bind(this) )
-    }
-
-    setPosts(posts){
-      this.setState({posts})
-    }
 
     render(){
+        if(this.props.isLoading)
+            return(<main className="user-page">
+                    <h3>Is Loading...</h3>
+            </main>);
+
         return (<main className="user-page">
-                    <UserDetails user={ this.state.user }/>
-                    <UserPosts posts={ this.state.posts }/>
+                    <UserDetails user={ this.props.userSelectedDetails }/>
+                    <UserPosts posts={ this.props.userSelectedPosts }/>
                 </main>)
     }
 }
+
+function mapStateToProps(state) {
+    return{
+        userSelectedDetails: state.friends.userSelected.details,
+        userSelectedPosts: state.friends.userSelected.posts,
+        isLoading: state.friends.isLoading,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return{
+        getUserDetails: (id) => dispatch(getUserDetails(id)),
+        getUserPosts: (id) => dispatch(getUserPosts(id)),
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
