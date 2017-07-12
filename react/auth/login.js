@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect} from 'react-router';
 import {connect} from 'react-redux';
 import {logInUser} from '../actions/creators';
+import LoginService from '../services/loginService';
 
 import './login.scss'
 
@@ -11,6 +12,8 @@ class Login extends React.Component{
   }
 
     userLogIn(){
+      let user = {name: this.user.value};
+      LoginService.set(user);
       console.log(this.user.value)
       this.props.logIn({name: this.user.value})
     }

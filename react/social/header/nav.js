@@ -2,10 +2,15 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {FilterList} from "../../actions/creators";
+import {logOutUser} from '../../actions/creators';
 
 import './nav.scss'
 
 class Nav extends React.Component{
+
+  logOut(){
+      this.props.logOut();
+  }
 
   render(){
     return(
@@ -18,6 +23,7 @@ class Nav extends React.Component{
           <div className="greet">
               <p>Hello {this.props.user}</p>
           </div>
+          <button onClick={ ()=> this.logOut()} >Log out</button>
       </div>
     )
   }
@@ -33,6 +39,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
   return{
     setFilter: (filterValue, list) => dispatch(FilterList(filterValue, list)),
+      logOut: ()=> dispatch(logOutUser())
   }
 }
 
