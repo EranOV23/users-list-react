@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {NavLink, withRouter} from 'react-router-dom';
-import {setUsersList, selectUser, getUsersList} from "../../actions/creators";
+import {getUsersList} from "../../actions/creators";
 
 import "./users-list.scss";
 
