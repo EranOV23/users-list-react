@@ -1,0 +1,25 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "helvetica", sans-serif;
+  font-weight: 300; }
+
+body button {
+  background: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 3px;
+  margin: 5px; }
+body button:hover {
+  background: red; }
+body ul, body li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+body a {
+  text-decoration: none; }
+body .users {
+  display: flex;
+  justify-content: space-between; }
+
+/*# sourceMappingURL=main.css.map */

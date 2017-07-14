@@ -18,12 +18,14 @@ class Nav extends React.Component{
           <div>
               <NavLink to="/about" exact activeClassName="active" >About</NavLink>
               <NavLink to="/users" activeClassName="active">Users</NavLink>
-              <input className="filterInput" onChange={ (e) => this.props.setFilter(e.target.value, this.props.list) }/>
+              <input className="filterInput"
+                     placeholder="search a user..."
+                     onChange={ (e) => this.props.setFilter(e.target.value, this.props.list) }/>
           </div>
           <div className="greet">
               <p>Hello {this.props.user}</p>
+              <button onClick={ ()=> this.logOut()} >Log out</button>
           </div>
-          <button onClick={ ()=> this.logOut()} >Log out</button>
       </div>
     )
   }

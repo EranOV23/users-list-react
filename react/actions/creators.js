@@ -7,6 +7,10 @@ export function addUser(user){
 	return {type: ACTIONS.ADD_USER, user}
 }
 
+export function removeUser(user){
+    return {type: ACTIONS.REMOVE_USER, user}
+}
+
 export function logInUser(user){
 	return {type: ACTIONS.LOG_IN, user}
 }
@@ -28,22 +32,11 @@ export function getUsersList() {
 	}
 }
 
-export function getUserDetails(id) {
+export function getUser(id) {
 	return dispatch => {
-		dispatch({type: ACTIONS.GET_USER_DETAILS_REQUEST, id})
+		dispatch({type: ACTIONS.GET_USER_REQUEST, id})
 
-		UserService.getUser(id)
-			.then( user => dispatch({type: ACTIONS.GET_USER_DETAILS_RESPOND, user}))
+		Promise.all([UserService.getUser(id), PostsService.getPosts(id)])
+			.then( ([user, posts]) => dispatch({type: ACTIONS.GET_USER_RESPOND, user, posts }))
 	}
 }
-
-
-export function getUserPosts(id) {
-    return dispatch => {
-        dispatch({type: ACTIONS.GET_USER_POSTS_REQUEST, id})
-
-        PostsService.getPosts(id)
-            .then( posts => dispatch({type: ACTIONS.GET_USER_POSTS_RESPOND, posts}))
-    }
-}
-

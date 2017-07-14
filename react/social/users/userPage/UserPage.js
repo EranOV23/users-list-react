@@ -4,7 +4,7 @@ import UserPosts from "./UserPosts";
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import {getUserDetails, getUserPosts} from '../../../actions/creators';
+import {getUser} from '../../../actions/creators';
 
 import "./user-page.scss";
 
@@ -12,21 +12,16 @@ class UserPage extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {
-            userId : this.props.match.params.id,
-        };
 
         if(props.match.params.id){
-            this.props.getUserDetails(this.state.userId);
-            this.props.getUserPosts(this.state.userId);
+            this.props.getUser(props.match.params.id);
         }
     }
 
     componentWillReceiveProps({match}){
         let userId = match.params.id;
         if(match.params.id &&  match.params.id !== this.props.match.params.id){
-            this.props.getUserDetails(userId);
-            this.props.getUserPosts(userId);
+            this.props.getUser(userId);
         }
     }
 
@@ -47,15 +42,13 @@ function mapStateToProps(state) {
     return{
         userSelectedDetails: state.friends.userSelected.details,
         userSelectedPosts: state.friends.userSelected.posts,
-        isLoading: state.friends.isLoading,
+        isLoading: state.friends.userSelected.isLoading,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return{
-        getUserDetails: (id) => dispatch(getUserDetails(id)),
-        getUserPosts: (id) => dispatch(getUserPosts(id)),
-
+        getUser: (id) => dispatch(getUser(id)),
     }
 }
 

@@ -10,6 +10,17 @@ html, body {
 body {
 
 
+    button{
+        background: none;
+        color: white;
+        border: 1px solid white;
+        border-radius: 3px;
+        margin: 5px;
+    }
+
+    button:hover{
+        background: red;
+    }
 
     ul, li {
         margin:0;

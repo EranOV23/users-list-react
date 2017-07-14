@@ -15,6 +15,7 @@ const initState = {
 		userSelected: {
 			details: {name: "eran", email: "eran@gmail.ocm"},
 			posts: [{body: "body", title: "title"}],
+            isLoading: false,
 		}
 	}
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {NavLink, withRouter} from 'react-router-dom';
-import {getUsersList} from "../../actions/creators";
+import {getUsersList, removeUser} from "../../actions/creators";
 
 import "./users-list.scss";
 
@@ -16,7 +16,10 @@ class UsersList extends React.Component {
     renderUser(user, index){
 
         return  <li key={index} id={index+1}>
-                  <NavLink activeClassName="active" to={`/users/user/${user.id}`} key={index}>{user.name}</NavLink>
+                <button onClick={ () => this.props.removeUser(user)}>X</button>
+                <NavLink activeClassName="active" to={`/users/user/${user.id}`} key={index}>
+                      {user.name}
+                  </NavLink>
                 </li>
     }
 
@@ -44,8 +47,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return{
-        addUsersList: (list) => dispatch(setUsersList(list)),
-        getUsersList: () => dispatch(getUsersList())
+        getUsersList: () => dispatch(getUsersList()),
+        removeUser: (user) => dispatch(removeUser(user))
     }
 }
 

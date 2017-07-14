@@ -4,11 +4,7 @@ import {
 	REMOVE_USER,
 	FILTER_LIST,
 	GET_USERS_RESPOND,
-	GET_USERS_REQUEST,
-    GET_USER_POSTS_REQUEST,
-    GET_USER_DETAILS_REQUEST,
-    GET_USER_DETAILS_RESPOND,
-    GET_USER_POSTS_RESPOND,} from '../actions';
+	GET_USERS_REQUEST,} from '../actions';
 
 import selectedUserReducer from './selectedUserReducer'
 
@@ -18,7 +14,7 @@ function usersListReducer(state = [], action){
 			return  [...state, action.user];
 
 		case REMOVE_USER:
-			return 	state.filter( (value) => value!==action.user );
+			return 	state.filter( (user) => user.id!==action.user.id );
 
 		case GET_USERS_RESPOND:
 			return [...action.users];
@@ -28,8 +24,10 @@ function usersListReducer(state = [], action){
 }
 
 function filteredListReducer(state = [], action){
-
 	switch(action.type){
+
+        case REMOVE_USER:
+            return 	state.filter( (user) => user.id!==action.user.id );
 
         case GET_USERS_RESPOND:
             return [...action.users];
@@ -49,18 +47,6 @@ function isLoadingReducer(state = false , action) {
             return false;
 
 		case GET_USERS_REQUEST:
-			return true;
-
-        case GET_USER_POSTS_RESPOND:
-            return false;
-
-		case GET_USER_POSTS_REQUEST:
-			return true;
-
-        case GET_USER_DETAILS_RESPOND:
-            return false;
-
-		case GET_USER_DETAILS_REQUEST:
 			return true;
 	}
 

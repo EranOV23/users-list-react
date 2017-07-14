@@ -1,0 +1,30 @@
+.nav {
+  background-color: #2b438b;
+  color: white;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .nav a {
+    color: white;
+    margin: 10px;
+    font-size: 20px;
+    border: none; }
+    .nav a.active {
+      color: red; }
+  .nav a:hover {
+    opacity: 0.8; }
+  .nav .filterInput {
+    margin: 10px;
+    height: 25px;
+    border-radius: 5px;
+    border: none;
+    padding-left: 10px; }
+  .nav .greet {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; }
+    .nav .greet p, .nav .greet button {
+      margin: 5px; }
+
+/*# sourceMappingURL=nav.css.map */
