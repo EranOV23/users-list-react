@@ -16,9 +16,12 @@ const initState = {
 			details: {name: "eran", email: "eran@gmail.ocm"},
 			posts: [{body: "body", title: "title"}],
             isLoading: false,
-		}
-	}
-}
+		},
+        friendsList: [],
+		friendsIds: [],
+    }
+};
+
 
 let middlewares = applyMiddleware(thunk);
 

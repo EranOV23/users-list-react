@@ -4,7 +4,7 @@ import UserPosts from "./UserPosts";
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import {getUser} from '../../../actions/creators';
+import {getUser, addFriend} from '../../../actions/creators';
 
 import "./user-page.scss";
 
@@ -32,6 +32,7 @@ class UserPage extends React.Component {
             </main>);
 
         return (<main className="user-page">
+            <button onClick={()=>this.props.addFriend(this.props.userSelectedDetails) }>Add friend</button>
             <UserDetails user={ this.props.userSelectedDetails }/>
             <UserPosts posts={ this.props.userSelectedPosts }/>
         </main>)
@@ -49,6 +50,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return{
         getUser: (id) => dispatch(getUser(id)),
+        addFriend: (friend) => dispatch(addFriend(friend)),
     }
 }
 

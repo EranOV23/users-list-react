@@ -18,6 +18,8 @@ class Nav extends React.Component{
           <div>
               <NavLink to="/about" exact activeClassName="active" >About</NavLink>
               <NavLink to="/users" activeClassName="active">Users</NavLink>
+              <NavLink to="/friends" activeClassName="active">Friends</NavLink>
+
               <input className="filterInput"
                      placeholder="search a user..."
                      onChange={ (e) => this.props.setFilter(e.target.value, this.props.list) }/>

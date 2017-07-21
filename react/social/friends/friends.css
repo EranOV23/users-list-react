@@ -1,0 +1,19 @@
+.friends ul {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; }
+  .friends ul li {
+    width: 200px;
+    background: #d9dcf0;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    border-radius: 5px; }
+.friends h3 {
+  background: #d9dcf0;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 5px; }
+
+/*# sourceMappingURL=friends.css.map */

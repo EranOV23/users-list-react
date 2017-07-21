@@ -10,3 +10,8 @@ export const GET_USERS_RESPOND = "getUsersRespond";
 
 export const GET_USER_REQUEST = "getUserRequest";
 export const GET_USER_RESPOND = "getUserRespond";
+
+export const ADD_FRIEND = "addFriend";
+export const REMOVE_FRIEND = "removeFriend";
+
+export const ADD_FRIEND_ID = "addFriendId";

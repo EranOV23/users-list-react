@@ -1,0 +1,16 @@
+.users-list {
+  background: #2b438b;
+  color: white;
+  padding: 20px;
+  margin: 10px;
+  width: 20%;
+  top: 0;
+  left: 0; }
+  .users-list a {
+    color: white; }
+  .users-list a:hover {
+    color: red; }
+  .users-list .active {
+    color: red; }
+
+/*# sourceMappingURL=users-list.css.map */

@@ -7,6 +7,14 @@ export function addUser(user){
 	return {type: ACTIONS.ADD_USER, user}
 }
 
+export function addFriend(friend){
+    return {type: ACTIONS.ADD_FRIEND, friend}
+}
+
+export function removeFriend(id){
+    return {type: ACTIONS.REMOVE_FRIEND, id}
+}
+
 export function removeUser(user){
     return {type: ACTIONS.REMOVE_USER, user}
 }
@@ -34,9 +42,20 @@ export function getUsersList() {
 
 export function getUser(id) {
 	return dispatch => {
-		dispatch({type: ACTIONS.GET_USER_REQUEST, id})
+		dispatch({type: ACTIONS.GET_USER_REQUEST, id});
 
 		Promise.all([UserService.getUser(id), PostsService.getPosts(id)])
 			.then( ([user, posts]) => dispatch({type: ACTIONS.GET_USER_RESPOND, user, posts }))
 	}
+}
+
+export function addFriendId(id){
+
+    return dispatch => {
+        dispatch({type: ACTIONS.ADD_FRIEND_ID, id});
+
+        UserService.getUser(id)
+            .then( (friend) => dispatch({type: ACTIONS.ADD_FRIEND, friend }))
+    }
+
 }
